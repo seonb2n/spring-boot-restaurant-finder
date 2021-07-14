@@ -21,7 +21,7 @@
                 $.ajax({
                     type: "POST" ,
                     async: true ,
-                    url: `/api/food/${index}`,
+                    url: `/api/restaurant/${index}`,
                     timeout: 3000
                 });
 
@@ -31,7 +31,7 @@
                 $.ajax({
                     type: "DELETE" ,
                     async: true ,
-                    url: `/api/food/${index}`,
+                    url: `/api/restaurant/${index}`,
                     timeout: 3000
                 });
                 getWishList();
@@ -42,7 +42,7 @@
     // search
     $("#searchButton").click(function () {
         const query = $("#searchBox").val();
-        $.get(`/api/food/search?query=${query}`, function (response) {
+        $.get(`/api/restaurant/search?query=${query}`, function (response) {
             search_result.search_result = response;
             $('#search-result').attr('style','visible');
         });
@@ -52,7 +52,7 @@
     $("#searchBox").keydown(function(key) {
         if (key.keyCode === 13) {
             const query = $("#searchBox").val();
-            $.get(`/api/food/search?query=${query}`, function (response) {
+            $.get(`/api/restaurant/search?query=${query}`, function (response) {
                 search_result.search_result = response;
                 $('#search-result').attr('style','visible');
             });
@@ -63,7 +63,7 @@
         $.ajax({
             type: "POST" ,
             async: true ,
-            url: "/api/food",
+            url: "/api/restaurant",
             timeout: 3000,
             data: JSON.stringify(search_result.search_result),
             contentType: "application/json",
@@ -77,7 +77,7 @@
     });
 
     function getWishList(){
-        $.get(`/api/food/wish-list`, function (response) {
+        $.get(`/api/restaurant/wish-list`, function (response) {
             wish_list.wish_list = response;
         });
     }
